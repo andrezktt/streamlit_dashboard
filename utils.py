@@ -1,5 +1,7 @@
 import pandas as pd
 from dataset import df
+import streamlit as st
+import time
 
 def format_number(value, prefix):
     for unit in ['', 'mil']:
@@ -8,7 +10,16 @@ def format_number(value, prefix):
         value /= 1000
     return f'{prefix} {value:.2f} milhões'
 
-# print(df.columns)
+# Conversor arquivos .csv
+@st.cache_data
+def convert_csv(df):
+    return df.to_csv(index=False).encode('utf-8')
+
+def success_message():
+    time.sleep(3)
+    success = st.success('Arquivo baixado com sucesso!', icon='✅')
+    time.sleep(3)
+    success.empty()
 
 # 1 - Dataframe - Receita por Estado
 df_state_income = df.groupby('Local da compra')[['Preço']].sum()

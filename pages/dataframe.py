@@ -1,6 +1,7 @@
 import streamlit as st
 
 from dataset import df
+from utils import convert_csv, success_message
 
 st.title('Dataset de Vendas')
 
@@ -43,3 +44,22 @@ filtered_data = df.query(query)
 filtered_data = filtered_data[columns]
 
 st.dataframe(filtered_data)
+
+st.markdown(f'A tabela possui :blue[{filtered_data.shape[0]}] linhas e :blue[{filtered_data.shape[1]}] colunas')
+
+st.markdown('Escreva o nome do arquivo')
+column_01, column_02 = st.columns(2)
+with column_01:
+    file_name = st.text_input(
+        label='Nome do arquivo',
+        label_visibility='collapsed'
+    )
+    file_name += '.csv'
+with column_02:
+    st.download_button(
+        label='Baixar Arquivo',
+        data=convert_csv(filtered_data),
+        file_name=file_name,
+        mime='text/csv',
+        on_click=success_message()
+    )
