@@ -2,6 +2,7 @@ import streamlit as st
 import plotly.express as px
 
 from dataset import df
+from utils import format_number
 
 st.set_page_config(layout="wide")
 st.title('Dashboard de Vendas :shopping_cart:')
@@ -9,3 +10,9 @@ st.title('Dashboard de Vendas :shopping_cart:')
 tab_01, tab_02, tab_03 = st.tabs(['Dataset', 'Receita', 'Vendedores'])
 with tab_01:
     st.dataframe(df)
+with tab_02:
+    column_01, column_02 = st.columns(2)
+    with column_01:
+        st.metric('Receita Total', format_number(df['Preço'].sum(), 'R$'))
+    with column_02:
+        st.metric('Quantidade de Vendas', format_number(df.shape[0], ''))
