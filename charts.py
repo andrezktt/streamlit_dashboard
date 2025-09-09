@@ -1,5 +1,5 @@
 import plotly.express as px
-from utils import df_state_income, df_month_income, df_category_income
+from utils import df_state_income, df_month_income, df_category_income, df_sellers
 
 # 1 - Receita por Estado (Mapa)
 chart_state_income_geo = px.scatter_geo(
@@ -39,5 +39,21 @@ chart_category_income = px.bar(
     data_frame=df_category_income.head(7),
     text_auto=True,
     title='Categorias com as Maiores Receitas'
+)
+
+# 5 - Receita por Vendedores
+chart_sellers_income = px.bar(
+    data_frame=df_sellers[['sum']].sort_values('sum', ascending=False).head(7),
+    x='sum', y=df_sellers[['sum']].sort_values('sum', ascending=False).head(7).index,
+    text_auto=True,
+    title='Melhores Vendedores por Receita'
+)
+
+# 5 - Quantidade de Vendas por Vendedores
+chart_sellers_qtt = px.bar(
+    data_frame=df_sellers[['count']].sort_values('count', ascending=False).head(7),
+    x='count', y=df_sellers[['count']].sort_values('count', ascending=False).head(7).index,
+    text_auto=True,
+    title='Melhores Vendedores por Quantidade de Vendas'
 )
 

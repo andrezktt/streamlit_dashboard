@@ -28,3 +28,7 @@ df_month_income['Mês'] = df_month_income['Data da Compra'].dt.month_name()
 # 3 - Dataframe - Receita por Categoria
 df_category_income = df.groupby('Categoria do Produto')[['Preço']].sum().sort_values('Preço', ascending=False)
 # print(df_category_income)
+
+# 5 - Dataframe Vendedores
+df_sellers = pd.DataFrame(df.groupby('Vendedor')['Preço'].agg(['sum', 'count']))
+# print(df_sellers)
