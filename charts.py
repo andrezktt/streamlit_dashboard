@@ -25,3 +25,11 @@ chart_month_income = px.line(
     title='Receita Mensal'
 )
 chart_month_income.update_layout(yaxis_title = 'Receita')
+
+# 3 - Receita por Estado (Gráfico de Barras)
+chart_state_income = px.bar(
+    data_frame=df_state_income.head(7),
+    x='Local da compra', y='Preço',
+    text_auto=True,
+    title='7 Melhores Estados'
+)
