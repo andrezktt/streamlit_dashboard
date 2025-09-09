@@ -1,5 +1,5 @@
 import plotly.express as px
-from utils import df_state_income, df_month_income
+from utils import df_state_income, df_month_income, df_category_income
 
 # 1 - Receita por Estado (Mapa)
 chart_state_income_geo = px.scatter_geo(
@@ -33,3 +33,11 @@ chart_state_income = px.bar(
     text_auto=True,
     title='7 Melhores Estados'
 )
+
+# 4 - Receita por Categoria
+chart_category_income = px.bar(
+    data_frame=df_category_income.head(7),
+    text_auto=True,
+    title='Categorias com as Maiores Receitas'
+)
+

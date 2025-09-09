@@ -3,7 +3,7 @@ import plotly.express as px
 
 from dataset import df
 from utils import format_number
-from charts import chart_state_income_geo, chart_month_income, chart_state_income
+from charts import chart_state_income_geo, chart_month_income, chart_state_income, chart_category_income
 
 st.set_page_config(layout="wide")
 st.title('Dashboard de Vendas :shopping_cart:')
@@ -20,3 +20,4 @@ with tab_02:
     with column_02:
         st.metric('Quantidade de Vendas', format_number(df.shape[0], ''))
         st.plotly_chart(chart_month_income, use_container_width=True)
+        st.plotly_chart(chart_category_income, use_container_width=True)
